@@ -1,3 +1,10 @@
 <h1>Customer Show Page</h1>
 
-<p><b>Name: </b><%= @customer.name %>
+<h3>Name: <%= @customer.name %></h3>
+
+<h5>Items</h5>
+<% @customer.items.each do |item| %>
+<p><b>Name: </b><%= item.name %></p>
+<p><b>Price: </b><%= item.price %></p>
+<p><b>Supermarket: </b><%= item.supermarket.name %></p><br>
+<% end %>

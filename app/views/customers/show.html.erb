@@ -2,9 +2,18 @@
 
 <h3>Name: <%= @customer.name %></h3>
 
-<h5>Items</h5>
+<h4>Items</h4>
 <% @customer.items.each do |item| %>
 <p><b>Name: </b><%= item.name %></p>
 <p><b>Price: </b><%= item.price %></p>
 <p><b>Supermarket: </b><%= item.supermarket.name %></p><br>
+<% end %>
+
+<h4>Add Items</h4>
+<%= form_with method: :post, local: true do |form| %>
+<p><%= form.label :name %>
+<%= form.text_field :name %></p>
+<p><%= form.label :price %>
+<%= form.text_field :price %></p>
+<%= form.submit "Submit Item" %>
 <% end %>

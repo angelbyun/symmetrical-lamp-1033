@@ -34,13 +34,25 @@ RSpec.describe "customer show", type: :feature do
 
     it 'displays a list of customers items including item name, price, and name of the supermarket it belongs to' do
       visit "/customers/#{customer_1.id}"
-save_and_open_page
+
       expect(current_path).to eq("/customers/#{customer_1.id}")
       expect(page).to have_content(item_1.name)
       expect(page).to have_content(item_1.price)
       expect(page).to have_content(item_2.name)
       expect(page).to have_content(item_2.price)
       expect(page).to have_content(supermarket_1.name)
+    end
+
+    it 'has a form to add items to the customer' do
+      visit "/customers/#{customer_1.id}"
+
+      fill_in(:name, with: 'Banana')
+      fill_in(:price, with: '1')
+      click_button('Submit Item')
+    
+      expect(page).to have_content('Banana')
+      expect(page).to have_content('1')
+      expect(current_path).to eq("/customers/#{customer_1.id}")
     end
   end
 end
